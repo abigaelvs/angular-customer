@@ -1,0 +1,72 @@
+<div class="container mt-4">
+  <form [formGroup]="customerForm" novalidate (ngSubmit)="save(customerForm.value)">
+    <div class="mb-3">
+      <label for="custName" class="form-label">Name</label>
+      <input type="text" class="form-control" id="custName" 
+      formControlName="custName" 
+      [ngClass]="{'is-invalid': (customerForm.controls['custName'].touched && customerForm.controls['custName'].errors?.required) || (submitted && customerForm.controls['custName'].invalid) }" />
+
+      <div class="invalid-feedback" *ngIf="customerForm.controls['custName'].invalid || (customerForm.controls['custName'].dirty || customerForm.controls['custName'].touched)">
+        <ng-container *ngIf="customerForm.controls['custName'].errors?.required">
+          Name is required
+        </ng-container>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">address</label>
+      <input type="text" class="form-control" idf="address" 
+      formControlName="address"
+      [ngClass]="{'is-invalid': customerForm.controls['address'].touched && customerForm.controls['address'].errors?.required || (submitted && customerForm.controls['address'].invalid) }">
+
+      <div class="invalid-feedback" *ngIf="customerForm.controls['address'].invalid || (customerForm.controls['address'].dirty || customerForm.controls['address'].touched)">
+        <ng-container *ngIf="customerForm.controls['address'].errors?.required">
+          Address is required
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="phoneNo" class="form-label">phoneNo</label>
+      <input type="text" class="form-control" idf="phoneNo" 
+      formControlName="phoneNo"
+      [ngClass]="{'is-invalid': customerForm.controls['phoneNo'].touched && customerForm.controls['phoneNo'].errors?.required || (submitted && customerForm.controls['phoneNo'].invalid) }">
+
+      <div class="invalid-feedback" *ngIf="customerForm.controls['phoneNo'].invalid || (customerForm.controls['phoneNo'].dirty || customerForm.controls['phoneNo'].touched)">
+        <ng-container *ngIf="customerForm.controls['phoneNo'].errors?.required">
+          Phone No is required
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" formControlName="jenisKelamin" id="laki" value="Laki-Laki" [checked]="customerForm.controls['jenisKelamin'].value == 'Laki-Laki'">
+        <label class="form-check-label" for="laki">Laki Laki</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" formControlName="jenisKelamin" id="perempuan" value="Perempuan" [checked]="customerForm.controls['jenisKelamin'].value == 'Perempuan'">
+        <label class="form-check-label" for="perempuan">Perempuan</label>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" formControlName="license">
+        <option value="Free" [selected]="customerForm.controls['license'].value == 'Free'">Free</option>
+        <option value="Premium" [selected]="customerForm.controls['license'].value == 'Premium'">Premium</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <div class="form-check" *ngFor="let lang of languageList">
+        <input type="checkbox" id="{{ lang }}" class="form-check-input" name="{{ lang }}" [checked]="filterLanguage(lang)" />
+        <label class="form-check-label" for="{{ lang }}">
+          {{ lang }}
+        </label>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
