@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <form [formGroup]="loginForm" novalidate (ngSubmit)="login(loginForm.value)">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" 
+      formControlName="username" 
+      [ngClass]="{'is-invalid': (loginForm.controls['username'].touched && loginForm.controls['username'].errors?.required) || (submitted && loginForm.controls['username'].invalid) }" />
+
+      <div class="invalid-feedback" *ngIf="loginForm.controls['username'].invalid || (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+        <ng-container *ngIf="loginForm.controls['username'].errors?.required">
+          Username is required
+        </ng-container>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" 
+      formControlName="password"
+      [ngClass]="{'is-invalid': loginForm.controls['password'].touched && loginForm.controls['password'].errors?.required || (submitted && loginForm.controls['password'].invalid) }">
+
+      <div class="invalid-feedback" *ngIf="loginForm.controls['password'].invalid || (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+        <ng-container *ngIf="loginForm.controls['password'].errors?.required">
+          Password is required
+        </ng-container>
+      </div>
+    </div>
+    
+    <a routerLink="/signup">Dont have account?</a>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <form [formGroup]="signUpForm" novalidate (ngSubmit)="signUp(signUpForm.value)">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" 
+      formControlName="username" 
+      [ngClass]="{'is-invalid': (signUpForm.controls['username'].touched && signUpForm.controls['username'].errors?.required) || (submitted && signUpForm.controls['username'].invalid) }" />
+
+      <div class="invalid-feedback" *ngIf="signUpForm.controls['username'].invalid || (signUpForm.controls['username'].dirty || signUpForm.controls['username'].touched)">
+        <ng-container *ngIf="signUpForm.controls['username'].errors?.required">
+          Username is required
+        </ng-container>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" 
+      formControlName="password"
+      [ngClass]="{'is-invalid': signUpForm.controls['password'].touched && signUpForm.controls['password'].errors?.required || (submitted && signUpForm.controls['password'].invalid) }">
+
+      <div class="invalid-feedback" *ngIf="signUpForm.controls['password'].invalid || (signUpForm.controls['password'].dirty || signUpForm.controls['password'].touched)">
+        <ng-container *ngIf="signUpForm.controls['password'].errors?.required">
+          Password is required
+        </ng-container>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
