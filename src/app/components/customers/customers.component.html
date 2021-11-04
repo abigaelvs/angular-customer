@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <div class="table-responsive">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+          <thead>
+            <tr>
+              <td>ID</td>
+              <td>Name</td>
+              <td>Address</td>
+              <td>PhoneNo</td>
+              <td>Gender</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let customer of customers">
+              <td>{{ customer.id }}</td>
+              <td>{{ customer.custName }}</td>
+              <td>{{ customer.address }}</td>
+              <td>{{ customer.phoneNo }}</td>
+              <td>{{ customer.jenisKelamin }}</td>
+              <td>
+                <button class="btn btn-info" routerLink="/customers/{{ customer.id }}">Detail</button>
+                <button class="btn btn-danger" (click)="deleteCustomer(customer)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
